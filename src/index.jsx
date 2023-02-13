@@ -10,7 +10,7 @@ import reportWebVitals from "./reportWebVitals";
 ReactDOM.render(
   <React.StrictMode>
     <RecoilRoot>
-      <BrowserRouter basename={process.env.PUBLIC_URL}>
+      <BrowserRouter basename="/Ast23_ClassRegisl">
         <GlobalStyle />
         <App />
       </BrowserRouter>
