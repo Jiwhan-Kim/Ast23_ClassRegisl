@@ -111,7 +111,8 @@ for (var i = 0; i < data.length; i++) {
 }
 const winS0 = [0, blueColor, greyColor, "#ffffff", "#000000", "flex"];
 const winS1 = [1, greyColor, blueColor, "#000000", "#ffffff", "none"];
-function MainView({ StartTime }) {
+
+function MainView({ StartTime, setPage }) {
   const [windows, setWindows] = useState(
     () => JSON.parse(window.localStorage.getItem("windows")) || winS0
   );
@@ -163,9 +164,10 @@ function MainView({ StartTime }) {
   const handle2Select = (e) => {
     setOption2(e.target.value);
   };
+
   return (
     <OutLineBox>
-      <Header Init={Init} />
+      <Header Init={Init} setPage={setPage}/>
       <BodyBox>
         <Info />
         <SelectBox>

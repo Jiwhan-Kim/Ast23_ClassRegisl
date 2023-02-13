@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 function ModalTime(props) {
@@ -55,16 +54,16 @@ function ModalTime(props) {
               <Body>
                 <P0 style={{ marginTop: "2rem" }}>설정한 시각보다 </P0>
                 <P0>{DeltaTime}초 늦습니다!</P0>
-                <Link
-                  to="/main"
+                <div
                   style={{
                     textDecoration: "none",
                     color: "black",
                     marginTop: "3.7rem",
+                      cursor: "pointer"
                   }}
                 >
                   <ProceedBtn onClick={close}>확인</ProceedBtn>
-                </Link>
+                </div>
               </Body>
             ) : (
               <Body>
@@ -73,16 +72,16 @@ function ModalTime(props) {
                 </P0>
                 <P0>({-DeltaTime}초 남음) </P0>
 
-                <Link
-                  to="/main"
+                <div
                   style={{
                     textDecoration: "none",
                     color: "black",
                     marginTop: "3.7rem",
+                    cursor: "pointer"
                   }}
                 >
                   <ProceedBtn onClick={close}>확인</ProceedBtn>
-                </Link>
+                </div>
               </Body>
             )}
           </Alert>

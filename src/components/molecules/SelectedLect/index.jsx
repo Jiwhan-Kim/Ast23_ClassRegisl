@@ -17,7 +17,7 @@ function SelectedLect({ lecture, selectLect, enrollLect, StartTime }) {
   function ListBox({ list, no, num, name, point, prof, time, place, remain }) {
     return (
       <Tr>
-          <Td style={{width:"3.9rem"}}>{list}</Td>
+          <Td style={{width:"3.9rem"}}>{list + 1}</Td>
         <Td style={{ width: "6.3rem" }}>
           <DeleteBtn
             onClick={() => {

@@ -1,9 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import { RxDividerVertical } from "react-icons/rx";
 
-function Header({ Init }) {
+function Header({ Init, setPage }) {
   return (
     <Head>
       <HeaderBox>
@@ -33,9 +32,12 @@ function Header({ Init }) {
                 김지환(2023189123)
             </Texts>
             <RxDividerVertical />
-          <Link to="/" style={{ textDecoration: "none" }} onClick={Init}>
+          <div style={{ textDecoration: "none", cursor: "pointer" }} onClick={() => {
+              Init();
+              setPage(0);
+          }}>
             <LogoutButton>로그아웃</LogoutButton>
-          </Link>
+          </div>
         </div>
       </HeaderBox>
     </Head>

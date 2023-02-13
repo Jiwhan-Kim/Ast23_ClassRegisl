@@ -1,9 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 function ModalLogin(props) {
-  const { valid, open, close, time } = props;
+  const { valid, open, close, time, setPage } = props;
   return (
     <div>
       {open ? (
@@ -52,16 +51,19 @@ function ModalLogin(props) {
               <Body>
                 <P0 style={{ marginTop: "2rem" }}>모의수강신청 시작 시각</P0>
                 <P0>{time}</P0>
-                <Link
-                  to="/main"
+                <div
                   style={{
                     textDecoration: "none",
                     color: "black",
                     marginTop: "3.7rem",
+                    cursor: "pointer"
+                  }}
+                  onClick={() => {
+                    setPage(1);
                   }}
                 >
                   <ProceedBtn>확인</ProceedBtn>
-                </Link>
+                </div>
               </Body>
             ) : (
               <Body>

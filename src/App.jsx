@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Route, Routes } from "react-router-dom";
 // themes
 import { ThemeProvider } from "styled-components";
 import theme from "./styles/theme";
@@ -7,7 +6,6 @@ import styled from "styled-components";
 // components
 import LoginView from "./components/views/LoginView";
 import MainView from "./components/views/MainView";
-import Clock from "./components/molecules/clock";
 function App() {
   let [StartTime, StartTimeSet] = useState(
     () => JSON.parse(window.localStorage.getItem("StartTime")) || 0
@@ -15,6 +13,14 @@ function App() {
   useEffect(() => {
     window.localStorage.setItem("StartTime", JSON.stringify(StartTime));
   }, [StartTime]);
+
+  let [page, setPage] = useState(
+      () => JSON.parse(window.localStorage.getItem("page")) || 0
+  );
+  useEffect(()=>{
+    window.localStorage.setItem("page", JSON.stringify(page));
+  }, [page]);
+
   const [textTime, setTextTime] = useState();
   const [hour, setHour] = useState("");
   const [min, setMin] = useState("");
@@ -85,29 +91,23 @@ function App() {
     }
   }
 
+
+
   return (
     <ThemeProvider theme={theme}>
-      <Routes>
-        <Route
-          exact
-          path="/"
-          element={
-            <LoginView
+      {page === 0 && (
+          <LoginView
               output0={output0()}
               output1={output1()}
               setTime={TimeReturn0}
               time={textTime}
               valid={valid}
+              setPage={setPage}
             />
-          }
-        />
-        <Route
-          exact
-          path="/main"
-          element={<MainView StartTime={StartTime} />}
-        />
-        <Route exact path="/clock" element={<Clock />} />
-      </Routes>
+      )}
+      {page === 1 && (
+          <MainView StartTime={StartTime} setPage={setPage}/>
+      )}
     </ThemeProvider>
   );
 }

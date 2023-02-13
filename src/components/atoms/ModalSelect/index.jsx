@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 function ModalSelect(props) {
@@ -54,31 +53,31 @@ function ModalSelect(props) {
                   선택한 과목이 추가되었습니다.
                 </P0>
                 <P0>과목명: {lecName}</P0>
-                <Link
-                  to="/main"
+                <div
                   style={{
                     textDecoration: "none",
                     color: "black",
                     marginTop: "3.7rem",
+                    cursor: "pointer"
                   }}
                 >
                   <ProceedBtn onClick={close}>확인</ProceedBtn>
-                </Link>
+                </div>
               </Body>
             ) : (
               <Body>
                 <P0 style={{ marginTop: "2rem" }}>이미 선택된 과목입니다.</P0>
                 <div style={{ height: "1.5rem" }} />
-                <Link
-                  to="/main"
+                <div
                   style={{
                     textDecoration: "none",
                     color: "black",
                     marginTop: "3.7rem",
+                    cursor: "pointer"
                   }}
                 >
                   <ProceedBtn onClick={close}>확인</ProceedBtn>
-                </Link>
+                </div>
               </Body>
             )}
           </Alert>
@@ -124,7 +123,6 @@ const Body = styled.div`
   border-right: 0.15rem solid #b3b3b3;
   background-color: #ffffff;
   color: #444;
-
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -136,7 +134,6 @@ const ProceedBtn = styled.div`
   font-size: 1.2rem;
   background: linear-gradient(to bottom, #fafafa, #f0f0f0);
   border-radius: 0.3rem;
-
   display: flex;
   align-items: center;
   justify-content: center;

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import ModalLogin from "../../atoms/ModalLogin";
 
-function LoginView({ output0, output1, setTime, time, valid }) {
+function LoginView({ output0, output1, setTime, time, valid, setPage }) {
   const [modalOpen, setModalOpen] = useState(false);
   const openModal = () => {
     setModalOpen(true);
@@ -17,6 +17,7 @@ function LoginView({ output0, output1, setTime, time, valid }) {
         close={closeModal}
         time={time}
         valid={valid}
+        setPage={setPage}
       />
       <LoginBox>
         <ExplainStr>연세대학교 새내기 모의수강신청</ExplainStr>
