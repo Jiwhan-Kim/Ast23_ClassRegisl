@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { RxDividerVertical } from "react-icons/rx";
 
 function Header({ Init }) {
   return (
@@ -8,10 +9,7 @@ function Header({ Init }) {
       <HeaderBox>
         <div
           style={{
-            paddingTop: "2rem",
-            paddingLeft: "3rem",
-            display: "flex",
-            flexDirection: "row",
+            display: "flex", flexDirection: "row", alignItems: "center"
           }}
         >
           <ImgDiv />
@@ -21,30 +19,20 @@ function Header({ Init }) {
         </div>
         <div
           style={{
-            width: "30rem",
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
           }}
         >
-          <table style={{ margin: "0.3rem 2.5rem 0.3rem 0.2rem" }}>
-            <tr>
-              <Td0>소속</Td0>
-              <Td1>시스템반도체공학과</Td1>
-            </tr>
-            <tr>
-              <Td0>학번</Td0>
-              <Td1>2023189123</Td1>
-            </tr>
-            <tr>
-              <Td0>성명</Td0>
-              <Td1>김지환</Td1>
-            </tr>
-            <tr>
-              <Td0>학년</Td0>
-              <Td1>1</Td1>
-            </tr>
-          </table>
+
+            <Texts>
+                시스템반도체공학과
+            </Texts>
+            <RxDividerVertical />
+            <Texts>
+                김지환(2023189123)
+            </Texts>
+            <RxDividerVertical />
           <Link to="/" style={{ textDecoration: "none" }} onClick={Init}>
             <LogoutButton>로그아웃</LogoutButton>
           </Link>
@@ -58,47 +46,47 @@ export default Header;
 
 const Head = styled.div`
   min-width: 128rem;
+  height: 7rem;
   width: 100%;
-  background-color: #05367b;
-  border-bottom: 0.3rem solid #ffc000;
-  margin-bottom: 1.5rem;
+  background-color: #ffffff;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 const ImgDiv = styled.div`
-  background: url("images/logo.gif");
-  width: 14.4rem;
+  background: url("newIm/logo.png");
+  width: 18.8rem;
   height: 4.4rem;
 `;
 const HeaderBox = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 125rem;
+  align-items: center;
+  width: 128rem;
 `;
 const TitleString = styled.div`
-  color: white;
+  color: #0C2960;
   font-size: 1.7rem;
   font-weight: 700;
   margin-right: 2rem;
   margin-left: 2rem;
 `;
-const Td0 = styled.td`
-  color: #ffffffbb;
-  font-size: 1.3rem;
-  padding: 0.3rem;
-`;
-const Td1 = styled.td`
-  color: #ffffff;
-  font-size: 1.3rem;
-  padding: 0.3rem;
-`;
 const LogoutButton = styled.td`
-  width: 8rem;
-  height: 3.5rem;
-  border: 1px solid #ffffff;
-  color: white;
+  width: 8.7rem;
+  height: 2.4rem;
+  border: 1px solid #4c4c4c;
+  border-radius: 1.2rem;
+  color: #000000;
   font-size: 1.5rem;
 
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+const Texts = styled.p`
+    font-size: 1.4rem;
+    color: #0C2960;
+    font-weight: 700;
 `;

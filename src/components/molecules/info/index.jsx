@@ -1,81 +1,87 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-const list0 = ["block", "none"];
-const list1 = ["none", "block"];
+import {RxTriangleUp, RxTriangleRight} from "react-icons/rx";
+
+const list0 = ["none", "none", <RxTriangleRight />, "펼치기"];
+const list1 = ["flex", "block", <RxTriangleUp />, "접기"];
 
 function Info() {
-  const [open, setOpen] = useState(list0);
+  const [open, setOpen] = useState(list1);
   return (
-    <InfoBox>
-      <div>
-        <TitleStr>공지사항</TitleStr>
-        <div style={{ height: "0.5rem" }} />
-        <NormalStr>
-          본 페이지는 연세대학교 제1대 시스템반도체공학과 학생회 Module에서 제작한
-          '모의수강신청' 사이트입니다.
-        </NormalStr>
-        <div style={{ height: "0.5rem" }} />
-        <NormalStr>
-          제2대 학생회 Conduct, 학회 Asterisk 2023에서 운영 및 관리하고 있습니다.
-        </NormalStr>
-        <div style={{ height: "0.5rem" }} />
-        <NormalStr>
-          2023년 행정 시스템 변화로 인해 이 페이지와 실제 수강신청 페이지에 차이가 있을 수 있습니다.
-        </NormalStr>
-        <div style={{ height: "0.5rem" }} />
-        <NormalStr
-          style={{ display: open[0], color: "#999999", cursor: "pointer" }}
-          onClick={() => {
-            setOpen(list1);
-          }}
-        >
-          더보기..
-        </NormalStr>
-        <div
-          style={{ display: open[1], color: "#555555", cursor: "pointer" }}
-          onClick={() => {
-            setOpen(list0);
-          }}
-        >
-          <NormalStr>제작: 김다운, 김지환 (시스템반도체공학과 21)</NormalStr>
-          <div style={{ height: "0.5rem" }} />
-          <NormalStr>ReactJS제작</NormalStr>
-          <div style={{ height: "2.5rem" }} />
-          <NormalStr style={{ fontWeight: "700", fontSize: "1.7rem" }}>Update..</NormalStr>
-          <div style={{ height: "0.5rem" }} />
-          <NormalStr>22.02.15. Module Develop - 모의수강신청 시스템 제작</NormalStr>
-          <div style={{ height: "0.5rem" }} />
-          <NormalStr>22.08.18. Module Update - 모의수강신청 시스템 내용 수정</NormalStr>
-          <div style={{ height: "0.5rem" }} />
-          <NormalStr>23.02.09. Asterisk Update - 모의수강신청 시스템 내용 수정</NormalStr>
-
-        </div>
-      </div>
-      <div>
-        <NormalStr>
-          대기순번제 기간: 2023.02.23. 09:00 ~ 2023.02.23. 17:00
-        </NormalStr>
-      </div>
-    </InfoBox>
-  );
+      <Container>
+          <div style= {{width: "128rem"}}>
+              <Infos>
+              <Title>공지사항</Title>
+              <Btn onClick={() => {
+                  if (open[0] === "none") {
+                      setOpen(list1);
+                  } else {
+                      setOpen(list0);
+                  }
+            }}>{open[2]} {open[3]}</Btn>
+          </Infos>
+          <InfoDiv style={{display: open[0]}}>
+              <Pp>◈ 본 페이지는 연세대학교 시스템반도체공학과 프로그래밍 학회 Asterisk 2023에서 제작한 모의수강신청 사이트입니다.</Pp>
+              <Pp>◈ 실제 수강신청 페이지와는 차이가 있을 수 있습니다.</Pp>
+              <Pp>◈ 제작: 김지환 (시스템반도체공학과 21)</Pp>
+          </InfoDiv>
+          </div>
+      </Container>
+  )
 }
 
 export default Info;
 
-const InfoBox = styled.div`
-  width: 122rem;
-  padding: 1rem 3rem 1rem 2rem;
+const Container = styled.div`
+  width: 100%;
+  background-color: #08326B;
+  color: #ffffff;
+  
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  background-color: #f4f4f4;
-  border: 1px solid #cccccc;
+  flex-direction: column;
+  align-items: center;
 `;
-const TitleStr = styled.p`
-  font-size: 1.5rem;
-  font-weight: 700;
+
+const Infos = styled.div`
+    width: 128rem;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
 `;
-const NormalStr = styled.p`
-  font-size: 1.3rem;
-  font-weight: 400;
+
+const Title = styled.div`
+    font-size: 2rem;
+    font-weight: 700;
+    
+    display: flex;
+    align-items: center;
+`;
+const Btn = styled.div`
+    cursor: pointer;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+    display: flex;
+    align-items: center;
+    
+    font-size: 1.3rem;
+    font-weight: 700;
+`;
+
+const InfoDiv = styled.div`
+     flex-direction: column;
+     justify-content: flex-start;
+     align-items: flex-start;
+     margin-top: 1rem;
+     
+     border-top: 1px solid rgb(38, 80, 147);
+     font-size: 1.4rem;
+     font-weight: 400;
+`;
+
+const Pp = styled.p`
+    margin-top: 1rem;
 `;

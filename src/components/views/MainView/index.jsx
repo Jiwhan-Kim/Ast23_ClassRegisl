@@ -6,8 +6,10 @@ import Info from "../../molecules/info";
 import OpenedLect from "../../molecules/OpenedLect";
 import SelectedLect from "../../molecules/SelectedLect";
 
-let blueColor = "#0067b1";
-let greyColor = "#f4f4f4";
+import {BiSearch} from "react-icons/bi"
+
+let blueColor = "#0067b3";
+let greyColor = "#ffffff";
 const data = [
   [1, "MAT2016-15-00", "공학수학(3)", 3, "이지민", "화7,목6,7", "공D510", 50, 0, 0, 3, 14],
   [2, "SYS1101-01-00", "시스템반도체공학개론", 3, "장지원", "목1,2,3", "I진A301", 50, 0, 0, 3, 14],
@@ -180,20 +182,22 @@ function MainView({ StartTime }) {
             희망과목
           </SelectButton>
         </SelectBox>
-        <OptionBox style={{ display: windows[5] }}>
+
+        <Contents>
+          <OptionBox style={{ display: windows[5] }}>
           <OptionSmallBox>
-            <Title>개설과목 검색</Title>
-            <SelectItem>
+            <Title>개설과목 조회</Title>
+            <SelectItem style={{width: "20.3rem"}}>
               <option>학부</option>
             </SelectItem>
-            <SelectItem onChange={handle0Select} value={option0}>
+            <SelectItem onChange={handle0Select} value={option0} style={{width: "20.3rem"}}>
               {options.map((item) => (
                 <option value={item} key={item}>
                   {item}
                 </option>
               ))}
             </SelectItem>
-            <SelectItem onChange={handle1Select} value={option1}>
+            <SelectItem onChange={handle1Select} value={option1} style={{width: "20.3rem"}}>
               {selector1.map((item) => (
                 <option key={item} value={item}>
                   {item}
@@ -212,11 +216,11 @@ function MainView({ StartTime }) {
                 setCriteria([option0, option1, option2]);
               }}
             >
-              검색
+              <BiSearch /><div style = {{width: "0.8rem"}} />조회
             </SearchBtn>
           </OptionSmallBox>
           <OptionSmallBox style={{ borderTop: "0.15rem solid #e3e3e3" }}>
-            <Title>키워드 검색</Title>
+            <Title>키워드</Title>
             추후 지원 예정..
           </OptionSmallBox>
         </OptionBox>
@@ -237,6 +241,7 @@ function MainView({ StartTime }) {
             StartTime={StartTime}
           />
         )}
+        </Contents>
       </BodyBox>
     </OutLineBox>
   );
@@ -246,24 +251,33 @@ export default MainView;
 
 const OutLineBox = styled.div`
   min-width: 128rem;
+  min-height: 100vh;
+  background-color: #f6f6f6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 //min-width = 122.0 + 3 (margin-left) + 3(margin-right) rem;
 
 const BodyBox = styled.div`
-  margin-left: 3rem;
+  width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
+
 const SelectBox = styled.div`
   margin-top: 1.5rem;
   border-bottom: 0.2rem solid #0067b1;
   display: flex;
-  width: 122rem;
+  width: 128rem;
 `;
 const OptionBox = styled.div`
-  border: 0.15rem solid #0067b1;
-  width: 122rem;
-  height: 9rem;
+  border: 0.1rem solid #d8d8d8;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  border-radius: 0.4rem;
+  height: 12.8rem;
   display: flex;
   flex-direction: column;
 `;
@@ -276,16 +290,16 @@ const OptionSmallBox = styled.div`
 const Title = styled.p`
   font-size: 1.35rem;
   font-weight: 700;
-  width: 13rem;
+  width: 9rem;
   display: flex;
-  justify-content: flex-end;
   margin-right: 1.5rem;
 `;
 const SearchBtn = styled.div`
-  font-size: 1.35rem;
-  background-color: #00b4a6;
-  width: 8rem;
-  height: 3rem;
+  font-size: 1.7rem;
+  background-color: #0067b3;
+  border-radius: 2px;
+  width: 11rem;
+  height: 3.5rem;
   color: #ffffff;
   font-weight: 700;
   cursor: pointer;
@@ -296,19 +310,31 @@ const SearchBtn = styled.div`
 `;
 const SelectItem = styled.select`
   margin-right: 1.5rem;
-  border: 1px solid #aaaaaa;
-  border-radius: 0.2rem;
-  height: 3rem;
+  border: 1px solid #e1e1e1;
+  height: 3.3rem;
   font-size: 1.35rem;
+  color:  #555;
+
 `;
 const SelectButton = styled.div`
-  height: 4.5rem;
+  height: 4rem;
   width: 20rem;
   font-size: 1.5rem;
   font-weight: 700;
   cursor: pointer;
-
+  border-top: 1px solid #0067b3;
+  border-left: 1px solid #0067b3;
+  border-right: 1px solid #0067b3;
+  border-radius: 1rem 1rem 0 0;
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+const Contents = styled.div`
+    background-color: #ffffff;
+    padding: 2.5rem 2rem 2.5rem 2rem;
+    width: 126rem;
+    border: 1px solid #d8d8d8;
+    border-radius: 0.4rem;
+    margin: 1rem;
 `;

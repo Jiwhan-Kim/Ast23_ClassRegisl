@@ -43,51 +43,59 @@ function OpenedLect({ criteria, lecture, selectLect, enrollLect, StartTime }) {
     remain,
     check,
   }) {
-    let color = "#ffffff";
-    if (list % 2 === 0) {
-      color = "#ffffff";
-    } else {
-      color = "#f6f6f6";
-    }
     return (
-      <Tr style={{ backgroundColor: color }}>
-        <Td style={{ width: "4.4rem" }}>{list + 1}</Td>
-        <Td style={{ width: "4.3rem" }}>
-          <SelectBtn
-            onClick={() => {
-              openModal0(name, check, no);
+      <Tr>
+          <Td style={{width: "3.9rem"}}>{list + 1}</Td>
+          <Td style={{ width: "6.4rem" }}>
+            <SelectBtn
+                onClick={() => {
+                openModal0(name, check, no);
+                }}
+            />
+          </Td>
+          <Td style={{width: "5.9rem"}}>{place.charAt(0) === 'I' || place.charAt(1) === 'I' || place.charAt(7) === 'I' || place.charAt(8) === 'I' ? "국제" : "신촌"}</Td>
+          <Td style={{ width: "4.9rem" }}>{num.charAt(3)}</Td>
+          <Td style={{ width: "6.9rem"}}>
+              {num.charAt(3)}000
+          </Td>
+          <Td style={{width: "15.9rem"}}>
+              <div
+                style={{width: "100%", height: "50%", borderBottom: "0.1rem solid #e3e3e3", display: "flex", alignItems: "center", justifyContent: "center",}}
+              >
+                  {num}
+              </div>
+              <div style={{width: "100%", height: "50%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around",}}
+              >
+                <ImgBox1 src="newIm/ico_sort01.png" />
+                  <ImgBox1 src="newIm/ico_sort02.png" />
+                  <ImgBox1 src="newIm/ico_sort03.png" />
+                  <ImgBox1 src="newIm/ico_sort05.png" />
+
+              </div>
+          </Td>
+          <Td style={{ width: "4.9rem" }}>{point}</Td>
+          <Td style={{ width: "6.5rem" }}>
+            <EnrollBtn
+                onClick={() => {
+                    enrollLect(no - 1, 1);
+                openModal1();
             }}
-          />
-        </Td>
-        <Td style={{ width: "3.3rem" }}>{num.charAt(3)}</Td>
-        <Td style={{ width: "17.9rem", color: "#0063dc" }}>
-          {num}
-          <ImgBox src="images/icon1_on.gif" />
-          <ImgBox src="images/icon2_on.gif" />
-          <ImgBox src="images/icon3_on.gif" />
-        </Td>
-        <Td style={{ width: "6.7rem" }}>
-          <EnrollBtn
-            onClick={() => {
-              enrollLect(no - 1, 1);
-              openModal1();
-            }}
-          />
-        </Td>
-        <Td style={{ width: "18.9rem" }}>
+            />
+          </Td>
+        <Td style={{ width: "26.4rem" }}>
           {name}
-          <ImgBox src="images/o_title.gif" />
         </Td>
-        <Td style={{ width: "3.3rem" }}>{point}</Td>
-        <Td style={{ width: "7.8rem" }}>{prof}</Td>
-        <Td style={{ width: "7.8rem" }}>{time}</Td>
-        <Td style={{ width: "7.8rem" }}>{place}</Td>
-        <Td style={{ width: "4.4rem" }}>{remain}</Td>
-        <Td style={{ width: "4.4rem" }}>0</Td>
-        <Td style={{ width: "7.8rem" }}>abc</Td>
-        <Td style={{ width: "5.5rem" }}>-</Td>
-        <Td style={{ width: "13.2rem" }}>-</Td>
-        <Td style={{ width: "4.4rem" }}>x</Td>
+
+        <Td style={{ width: "14.9rem" }}>{prof}</Td>
+        <Td style={{ width: "14.9rem" }}>{time}</Td>
+        <Td style={{ width: "14.9rem" }}>{place}</Td>
+          <Td style={{width: "4.9rem"}}>-</Td>
+          <Td style={{width: "6.9rem"}}>-</Td>
+          <Td style={{width: "28.9rem"}}>-</Td>
+        <Td style={{ width: "4.9rem" }}>{remain}</Td>
+        <Td style={{ width: "4.9rem" }}>-</Td>
+          <Td style={{width: "20.9rem"}}>-</Td>
+          <Td style={{width: "7.4rem"}}>-</Td>
       </Tr>
     );
   }
@@ -128,35 +136,38 @@ function OpenedLect({ criteria, lecture, selectLect, enrollLect, StartTime }) {
         isChecked={isChecked}
       />
       <ModalTime open={modal1Open} close={closeModal1} StartTime={StartTime} />
-      <TitleBox>
-        <ExplainBox>
-          <ImgBox1 src="images/icon1_on.gif" />
-          동일교과목 조회
+      <TitleBox style = {{fontSize: "1.5rem", fontWeight: "700"}}>
+          개설 교과목 목록
+          <div style ={{width: "2rem"}} />
+        <ExplainBox style={{color: "#FF0000"}}>
+          <ImgBox1 src="newIm/ico_sort01.png" />
+          동일교과목
         </ExplainBox>
-        <ExplainBox>
-          <ImgBox1 src="images/icon2_on.gif" />
-          교과목개요 조회
+        <ExplainBox style={{color: "#C80202"}}>
+          <ImgBox1 src="newIm/ico_sort02.png" />
+          교과목개요
         </ExplainBox>
-        <ExplainBox>
-          <ImgBox1 src="images/icon3_on.gif" />
-          수업계획서 조회
+        <ExplainBox style={{color: "#030E79"}}>
+          <ImgBox1 src="newIm/ico_sort03.png" />
+          수업계획서
         </ExplainBox>
-        <ExplainBox style={{ width: "20rem" }}>
-          <ImgBox1 src="images/o_title.gif" />
-          마일리지수강신청결과 조회
+        <ExplainBox style={{color: "#0000FF"}}>
+          <ImgBox1 src="newIm/ico_sort05.png" />
+          마일리지 결과
         </ExplainBox>
       </TitleBox>
-
-      <table style={{ marginTop: "1rem" }}>
-        <thead style={{ overflow: "auto", display: "inline-table" }}>
-          <TrHeadForOL />
-        </thead>
-        <tbody
-          style={{ display: "block", overflowY: "scroll", height: "30rem" }}
-        >
-          {ListItems}
-        </tbody>
-      </table>
+        <div style={{width: "100%", overflowX: "auto"}}>
+            <table style={{ marginTop: "1rem" }}>
+                <thead style={{display: "inline-table" }}>
+                    <TrHeadForOL />
+                </thead>
+                <div style = {{overflowX: "hidden", width: "100%", height: "30rem", overflowY: "auto"}}>
+                    <tbody>
+                        {ListItems}
+                    </tbody>
+                </div>
+            </table>
+        </div>
     </OutLineBox>
   );
 }
@@ -165,27 +176,25 @@ export default OpenedLect;
 
 const OutLineBox = styled.div`
   margin-top: 1rem;
-  font-size: 1.35rem;
+  font-size: 1.3rem;
 `;
 const Tr = styled.tr`
   font-size: 1.3rem;
-  border-right: 0.15rem solid #e3e3e3;
+  border-right: 0.05rem solid #e3e3e3;
   display: flex;
 `;
 const Td = styled.td`
-  max-height: 3.5rem;
-  height: 3.5rem;
-  border-left: 0.15rem solid #e3e3e3;
-  border-bottom: 0.15rem solid #e3e3e3;
+  max-height: 5.9rem;
+  height: 5.9rem;
+  border-left: 0.05rem solid #e3e3e3;
+  border-bottom: 0.05rem solid #e3e3e3;
   white-space: pre-line;
 
   text-align: center;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-`;
-const ImgBox = styled.img`
-  margin-left: 0.5rem;
 `;
 const ImgBox1 = styled.img`
   margin: 0rem 0.5rem 0rem 0.5rem;
@@ -193,6 +202,10 @@ const ImgBox1 = styled.img`
 const ExplainBox = styled.div`
   display: flex;
   margin-right: 0.7rem;
+  width: 10%;
+  font-size: 1.3rem;
+  font-weight: 700;
+  align-items: flex-end;
 `;
 const TitleBox = styled.div`
   display: flex;

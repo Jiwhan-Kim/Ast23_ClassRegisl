@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { BsDownload } from "react-icons/bs";
+import {RxHeart} from "react-icons/rx";
+
 function SelectBtn({ onClick }) {
   return (
     <Btn onClick={onClick}>
-      <BsDownload />
+      <RxHeart /> 희망
     </Btn>
   );
 }
@@ -12,13 +13,16 @@ function SelectBtn({ onClick }) {
 export default SelectBtn;
 
 const Btn = styled.div`
-  width: 3.6rem;
-  height: 2.6rem;
-  background: linear-gradient(to bottom, #ffffff, #e4e4e4);
+  width: 5.8rem;
+  height: 5.3rem;
   cursor: pointer;
-  border: 0.15rem solid #d3d3d3;
+  border: 0.1rem solid #666;
+  border-radius: 0.2rem;
 
+color: #555;
+font-size: 1.3rem;
   display: flex;
   align-items: center;
   justify-content: center;
+    font-weight: 700;
 `;
