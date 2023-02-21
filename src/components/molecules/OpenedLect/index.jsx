@@ -7,30 +7,50 @@ import EnrollBtn from "../../atoms/EnrollBtn";
 import ModalSelect from "../../atoms/ModalSelect";
 import ModalTime from "../../atoms/ModalTime";
 
-function OpenedLect({ criteria, lecture, selectLect, enrollLect, StartTime }) {
-  const [modal0Open, setModal0Open] = useState(false);
-  const [modal1Open, setModal1Open] = useState(false);
-  const [lecName, setLecName] = useState("");
-  const [isChecked, setIsChecked] = useState(0);
-  const openModal0 = (name, check, no) => {
-    setModal0Open(true);
-    setLecName(name);
-    if (check === 0) {
-      setIsChecked(1);
-    } else {
-      setIsChecked(0);
+const useConfirm = (message, confirmedAction) => {
+    if (typeof confirmedAction !== 'function') {
+        console.log("Callback is not a function")
+        return;
     }
-    selectLect(no - 1, 1);
-  };
-  const openModal1 = () => {
-    setModal1Open(true);
-  };
-  const closeModal0 = () => {
-    setModal0Open(false);
-  };
-  const closeModal1 = () => {
-    setModal1Open(false);
-  };
+    const confirmAction = () => {
+        let result = window.confirm(message)
+        if (result) {
+            confirmedAction()
+        }
+    }
+    return confirmAction;
+}
+
+function OpenedLect({ criteria, lecture, selectLect, enrollLect, StartTime }) {
+    function retDTime() {
+            var TimeRef = new Date();
+            var EndTime = TimeRef.getTime();
+            var DeltaTime = (EndTime - StartTime) / 1000;
+            if (DeltaTime > 0) {
+                return ("설정한 시간보다 " + DeltaTime + "초 늦습니다.")
+            } else {
+                return ("수강신청 기간이 아닙니다. \n " + (-DeltaTime) + "초 남음")
+            }
+    }
+    const [lecName, setLecName] = useState("");
+    const [isChecked, setIsChecked] = useState(1);
+    function retString() {
+        if (isChecked === 0) {
+            return ("선택한 과목이 추가되었습니다.\n과목명: " + lecName)
+        } else {
+            return ("이미 선택된 과목입니다.")
+        }
+    }
+    const [no, setNo] = useState(1)
+
+    const confirmAction = () => {window.confirm(retDTime())}
+    const confirmResult = useConfirm("수강신청을 진행합니다.", confirmAction);
+    const selectAction = () => {
+        selectLect(no - 1, 1);
+        window.confirm(retString())
+    };
+    const selectResult = useConfirm("이 과목을 희망과목에 추가하시겠습니까?", selectAction);
+
   function ListBox({
     list,
     no,
@@ -49,7 +69,14 @@ function OpenedLect({ criteria, lecture, selectLect, enrollLect, StartTime }) {
           <Td style={{ width: "6.4rem" }}>
             <SelectBtn
                 onClick={() => {
-                openModal0(name, check, no);
+                    setLecName(name);
+                    if (check === 0) {
+                        setIsChecked(0)
+                    } else {
+                        setIsChecked(1);
+                    }
+                    setNo(no)
+                    selectResult()
                 }}
             />
           </Td>
@@ -78,7 +105,7 @@ function OpenedLect({ criteria, lecture, selectLect, enrollLect, StartTime }) {
             <EnrollBtn
                 onClick={() => {
                     enrollLect(no - 1, 1);
-                openModal1();
+                    confirmResult();
             }}
             />
           </Td>
@@ -129,13 +156,6 @@ function OpenedLect({ criteria, lecture, selectLect, enrollLect, StartTime }) {
   ));
   return (
     <OutLineBox>
-      <ModalSelect
-        open={modal0Open}
-        close={closeModal0}
-        lecName={lecName}
-        isChecked={isChecked}
-      />
-      <ModalTime open={modal1Open} close={closeModal1} StartTime={StartTime} />
       <TitleBox style = {{fontSize: "1.5rem", fontWeight: "700"}}>
           개설 교과목 목록
           <div style ={{width: "2rem"}} />

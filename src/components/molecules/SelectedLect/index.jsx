@@ -6,14 +6,34 @@ import DeleteBtn from "../../atoms/DeleteBtn";
 import EnrollBtn from "../../atoms/EnrollBtn";
 import ModalTime from "../../atoms/ModalTime";
 
+const useConfirm = (message, confirmedAction) => {
+    if (typeof confirmedAction !== 'function') {
+        console.log("Callback is not a function")
+        return;
+    }
+    const confirmAction = () => {
+        let result = window.confirm(message)
+        if (result) {
+            confirmedAction()
+        }
+    }
+    return confirmAction;
+}
+
+
 function SelectedLect({ lecture, selectLect, enrollLect, StartTime }) {
-  const [modal1Open, setModal1Open] = useState(false);
-  const openModal1 = () => {
-    setModal1Open(true);
-  };
-  const closeModal1 = () => {
-    setModal1Open(false);
-  };
+    function retDTime() {
+        var TimeRef = new Date();
+        var EndTime = TimeRef.getTime();
+        var DeltaTime = (EndTime - StartTime) / 1000;
+        if (DeltaTime > 0) {
+            return ("설정한 시간보다 " + DeltaTime + "초 늦습니다.")
+        } else {
+            return ("수강신청 기간이 아닙니다.\n" + DeltaTime + "초 남음")
+        }
+    }
+    const confirmAction = () => {window.confirm(retDTime())}
+    const confirmResult = useConfirm("수강신청을 진행합니다.", confirmAction);
   function ListBox({ list, no, num, name, point, prof, time, place, remain }) {
     return (
       <Tr>
@@ -48,7 +68,7 @@ function SelectedLect({ lecture, selectLect, enrollLect, StartTime }) {
             <EnrollBtn
                 onClick={() => {
                     enrollLect(no - 1, 1);
-                openModal1();
+                    confirmResult();
             }}
             />
           </Td>
@@ -92,7 +112,6 @@ function SelectedLect({ lecture, selectLect, enrollLect, StartTime }) {
 
   return (
     <OutLineBox>
-      <ModalTime open={modal1Open} close={closeModal1} StartTime={StartTime} />
       <TitleBox style = {{fontSize: "1.5rem", fontWeight: "700"}}>
           희망과목 목록
           <div style ={{width: "2rem"}} />
