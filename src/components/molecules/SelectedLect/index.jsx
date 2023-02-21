@@ -29,7 +29,7 @@ function SelectedLect({ lecture, selectLect, enrollLect, StartTime }) {
         if (DeltaTime > 0) {
             return ("설정한 시간보다 " + DeltaTime + "초 늦습니다.")
         } else {
-            return ("수강신청 기간이 아닙니다.\n" + DeltaTime + "초 남음")
+            return ("수강신청 기간이 아닙니다.\n" + (-DeltaTime) + "초 남음")
         }
     }
     const confirmAction = () => {window.confirm(retDTime())}

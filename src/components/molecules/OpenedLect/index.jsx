@@ -29,17 +29,8 @@ function OpenedLect({ criteria, lecture, selectLect, enrollLect, StartTime }) {
             if (DeltaTime > 0) {
                 return ("설정한 시간보다 " + DeltaTime + "초 늦습니다.")
             } else {
-                return ("수강신청 기간이 아닙니다. \n " + (-DeltaTime) + "초 남음")
+                return ("수강신청 기간이 아닙니다.\n" + (-DeltaTime) + "초 남음")
             }
-    }
-    const [lecName, setLecName] = useState("");
-    const [isChecked, setIsChecked] = useState(1);
-    function retString() {
-        if (isChecked === 0) {
-            return ("선택한 과목이 추가되었습니다.\n과목명: " + lecName)
-        } else {
-            return ("이미 선택된 과목입니다.")
-        }
     }
     const [no, setNo] = useState(1)
 
@@ -47,7 +38,7 @@ function OpenedLect({ criteria, lecture, selectLect, enrollLect, StartTime }) {
     const confirmResult = useConfirm("수강신청을 진행합니다.", confirmAction);
     const selectAction = () => {
         selectLect(no - 1, 1);
-        window.confirm(retString())
+        window.confirm("선택한 과목이 추가되었습니다.");
     };
     const selectResult = useConfirm("이 과목을 희망과목에 추가하시겠습니까?", selectAction);
 
@@ -69,13 +60,6 @@ function OpenedLect({ criteria, lecture, selectLect, enrollLect, StartTime }) {
           <Td style={{ width: "6.4rem" }}>
             <SelectBtn
                 onClick={() => {
-                    setLecName(name);
-                    if (check === 0) {
-                        setIsChecked(0)
-                    } else {
-                        setIsChecked(1);
-                    }
-                    setNo(no)
                     selectResult()
                 }}
             />
