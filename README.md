@@ -10,11 +10,7 @@ upon install react app,
 
 ### `npm start`
 
-to start the app.
-
-# How to develop the App
-
-### Just Do It
+to start the app (Some Images won't be applied in local environment).
 
 # How to upload your work on GitHub
 
